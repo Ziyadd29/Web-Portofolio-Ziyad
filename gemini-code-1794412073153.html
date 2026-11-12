@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziyad Rifdani | Photography Portofolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        playfair: ['"Playfair Display"', 'serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#050505',
+                        light: '#f8f9fa',
+                        darkblue: '#1d4ed8', 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- LIQUID GLASS STYLES --- */
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .dark .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(29, 78, 216, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 9999px; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-pill:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(29, 78, 216, 0.2);
+        }
+        .dark .glass-pill {
+            background: rgba(29, 78, 216, 0.08);
+            border: 1px solid rgba(29, 78, 216, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .dark .glass-pill:hover {
+            background: rgba(29, 78, 216, 0.2);
+            border-color: rgba(29, 78, 216, 0.6);
+            box-shadow: 0 8px 25px rgba(29, 78, 216, 0.3);
+        }
+
+        .img-hover-wrapper {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border-radius: 1.5rem; 
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateZ(0); 
+            transition: all 0.5s ease;
+        }
+        .dark .img-hover-wrapper {
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .img-hover-wrapper img {
+            transition: transform 0.7s ease, filter 0.5s ease;
+            filter: grayscale(40%);
+        }
+        .dark .img-hover-wrapper img {
+            filter: grayscale(60%);
+        }
+        .img-hover-wrapper:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        #navbar {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            top: 0;
+            border-radius: 0;
+            border: 1px solid transparent;
+        }
+        .nav-scrolled {
+            top: 1rem !important;
+            width: calc(100% - 2rem) !important;
+            margin: 0 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 1) !important;
+            border-radius: 9999px !important; 
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .dark .nav-scrolled {
+            background: rgba(10, 10, 10, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        @media (min-width: 768px) {
+            .nav-scrolled {
+                width: calc(100% - 4rem) !important;
+                margin: 0 2rem;
+            }
+        }
+
+        #nav-indicator {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #lightbox {
+            transition: opacity 0.3s ease;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(29, 78, 216, 0.5);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-dark dark:text-light font-poppins antialiased selection:bg-darkblue selection:text-white relative">
+
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <!-- Ambient Background Blobs -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-300/30 dark:bg-darkblue/10 rounded-full blur-[100px] pointer-events-none z-[-1] transition-colors duration-700"></div>
+    <div class="fixed bottom-[-10%] right-[-5%] w-[35vw] h-[35vw] bg-indigo-300/20 dark:bg-blue-900/10 rounded-full blur-[120px] pointer-events-none z-[-1] transition-colors duration-700"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed z-50 py-6 px-6 md:px-12 flex justify-between items-center">
+        <a href="#home" class="font-playfair text-2xl font-bold tracking-widest uppercase text-gray-900 dark:text-white drop-shadow-md transition-colors">Ziyad Rifdani</a>
+        
+        <ul id="nav-list" class="hidden md:flex relative space-x-2 text-sm uppercase tracking-wider font-medium items-center p-1">
+            <div id="nav-indicator" class="absolute h-full bg-darkblue/10 dark:bg-darkblue/30 backdrop-blur-md border border-darkblue/20 dark:border-darkblue/50 rounded-full opacity-0 left-0 w-0 pointer-events-none z-0 shadow-sm dark:shadow-[0_0_15px_rgba(29,78,216,0.3)]"></div>
+            
+            <li><a href="#home" class="nav-item relative z-10 px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-darkblue dark:hover:text-white transition duration-300">Home</a></li>
+            <li><a href="#about" class="nav-item relative z-10 px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-darkblue dark:hover:text-white transition duration-300">About</a></li>
+            <li><a href="#resume" class="nav-item relative z-10 px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-darkblue dark:hover:text-white transition duration-300">Education</a></li>
+            <li><a href="#portofolio" class="nav-item relative z-10 px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-darkblue dark:hover:text-white transition duration-300">Portofolio</a></li>
+            <li><a href="#contact" class="nav-item relative z-10 px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-darkblue dark:hover:text-white transition duration-300">Contact</a></li>
+        </ul>
+
+        <button id="menu-btn" class="md:hidden text-2xl focus:outline-none text-gray-900 dark:text-gray-200 transition-colors">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white/90 dark:bg-black/60 backdrop-blur-xl z-40 hidden flex-col items-center justify-center space-y-8 text-xl font-playfair uppercase tracking-widest border-b border-gray-200 dark:border-white/10 transition-colors">
+        <a href="#home" class="mobile-link text-gray-700 dark:text-gray-300 hover:text-darkblue transition">Home</a>
+        <a href="#about" class="mobile-link text-gray-700 dark:text-gray-300 hover:text-darkblue transition">About</a>
+        <a href="#resume" class="mobile-link text-gray-700 dark:text-gray-300 hover:text-darkblue transition">Education & Exp</a>
+        <a href="#portofolio" class="mobile-link text-gray-700 dark:text-gray-300 hover:text-darkblue transition">Portfolio</a>
+        <a href="#contact" class="mobile-link text-gray-700 dark:text-gray-300 hover:text-darkblue transition">Contact</a>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <header id="home" class="relative h-screen flex items-center justify-center text-center">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1554046920-90dc206953bc?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat bg-fixed opacity-30 dark:opacity-70 transition-opacity duration-700"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-gray-50 dark:from-dark/40 dark:via-dark/80 dark:to-dark transition-colors duration-700"></div>
+
+        <div class="relative z-10 px-4 max-w-4xl mx-auto reveal mt-16">
+            <div class="inline-flex items-center justify-center glass-pill px-6 py-2 mb-6">
+                <p class="text-gray-600 dark:text-white/80 text-xs md:text-sm tracking-[0.4em] font-light uppercase">Photography Portofolio 2026</p>
+            </div>
+            
+            <h1 class="font-montserrat text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 leading-[1.1] drop-shadow-xl dark:drop-shadow-2xl tracking-tight transition-colors">
+                CAPTURING MOMENTS,<br>
+                <span class="font-playfair italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-darkblue tracking-normal pr-2">Telling Stories</span>
+            </h1>
+            
+            <h2 class="text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300 mb-2 uppercase tracking-[0.3em] transition-colors">Ziyad Rifdani</h2>
+            
+            <p class="text-sm text-darkblue dark:text-blue-400 mb-10 font-medium dark:font-light italic h-6 flex items-center justify-center transition-colors">
+                <span id="typewriter-text"></span><span class="animate-pulse">|</span>
+            </p>
+            
+            <div class="glass-card max-w-2xl mx-auto mb-10 p-6">
+                <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base font-light italic leading-relaxed transition-colors">
+                    “Mengabadikan setiap momen menjadi cerita visual yang autentik, bermakna, dan tak terlupakan.”
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#portofolio" class="px-8 py-4 glass-pill text-darkblue dark:text-white font-medium tracking-wider uppercase text-sm">Explore My Work</a>
+                <a href="#about" class="px-8 py-4 rounded-full border border-darkblue/20 dark:border-white/20 bg-darkblue/5 dark:bg-white/5 backdrop-blur-md text-darkblue dark:text-white font-medium tracking-wider uppercase text-sm hover:bg-darkblue/10 dark:hover:bg-white/10 transition duration-300">About Me</a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="w-12 h-12 flex items-center justify-center glass-pill text-gray-800 dark:text-white text-xl"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </header>
+
+    <!-- 2. About Me -->
+    <section id="about" class="py-24 px-6 md:px-12 relative z-10">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
+            <div class="relative w-full max-w-md mx-auto">
+                <div class="absolute inset-0 glass-card transform translate-x-4 translate-y-4 z-0"></div>
+                <div class="img-hover-wrapper aspect-[3/4] w-full z-10 relative">
+                    <img src="IMG_2116.JPG" alt="Ziyad Rifdani" class="w-full h-full object-cover object-center">
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="font-playfair text-3xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white transition-colors">Behind the Lens</h2>
+                <div class="flex items-center space-x-4 mb-8">
+                    <div class="w-16 h-px bg-gray-400 dark:bg-white/30"></div>
+                    <span class="text-darkblue dark:text-blue-400 italic font-playfair tracking-wider">Know me better</span>
+                </div>
+                
+                <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base font-light leading-relaxed mb-8 glass-card p-6 border-l-4 border-l-darkblue transition-colors">
+                    “Saya adalah seorang fotografer yang berdedikasi untuk menangkap esensi cerita di balik setiap momen. Berbekal keahlian teknis dalam pencahayaan, komposisi, serta proses editing digital menggunakan Adobe Lightroom dan Photoshop, saya fokus menghasilkan visual yang kuat dan bercerita. Bagi saya, fotografi bukan sekadar profesi, melainkan media komunikasi visual yang menjembatani ide kreatif dengan hasil karya yang autentik dan berkesan.”
+                </p>
+                
+                <h3 class="font-playfair text-xl text-gray-900 dark:text-white mb-4 transition-colors">Core Focus</h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-5 py-2 glass-pill text-gray-800 dark:text-white text-xs tracking-wider uppercase">Photography</span>
+                    <span class="px-5 py-2 glass-pill text-gray-800 dark:text-white text-xs tracking-wider uppercase">Visual Storytelling</span>
+                    <span class="px-5 py-2 glass-pill text-gray-800 dark:text-white text-xs tracking-wider uppercase">Creative Editing</span>
+                    <span class="px-5 py-2 glass-pill text-gray-800 dark:text-white text-xs tracking-wider uppercase">Lightroom</span>
+                    <span class="px-5 py-2 glass-pill text-gray-800 dark:text-white text-xs tracking-wider uppercase">Photoshop</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 & 4. Education, Experience, Skills -->
+    <section id="resume" class="py-24 px-6 md:px-12 relative z-10">
+        <div class="max-w-6xl mx-auto glass-card p-8 md:p-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Education Timeline -->
+                <div class="reveal">
+                    <div class="flex items-center space-x-4 mb-10">
+                        <div class="w-12 h-12 glass-pill flex items-center justify-center text-xl text-darkblue dark:text-white"><i class="fas fa-graduation-cap"></i></div>
+                        <h2 class="font-playfair text-3xl font-bold text-gray-900 dark:text-white transition-colors">Education</h2>
+                    </div>
+                    
+                    <div class="border-l border-gray-300 dark:border-white/10 pl-8 space-y-12 relative">
+                        <div class="relative group">
+                            <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-darkblue border-4 border-white dark:border-[#050505] shadow-[0_0_10px_rgba(29,78,216,0.5)]"></div>
+                            <span class="inline-block px-4 py-1 glass-pill text-darkblue dark:text-white text-[10px] font-bold tracking-widest mb-3">2027 – 2031</span>
+                            <h3 class="text-xl font-playfair font-bold text-gray-900 dark:text-white mt-1 transition-colors">KOREA UNIVERSITY</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm font-light leading-relaxed transition-colors">“Setelah menyelesaikan pendidikan menengah, saya melanjutkan studi ke jenjang perguruan tinggi di Korea University. Di kampus ini, saya fokus mendalami bidang keilmuan pilihan saya sekaligus memperluas wawasan global dan jaringan internasional di salah satu universitas terbaik di Korea Selatan.”</p>
+                        </div>
+                        <div class="relative group">
+                            <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-darkblue border-4 border-white dark:border-[#050505] shadow-[0_0_10px_rgba(29,78,216,0.5)]"></div>
+                            <span class="inline-block px-4 py-1 glass-pill text-darkblue dark:text-white text-[10px] font-bold tracking-widest mb-3">2024 – 2026</span>
+                            <h3 class="text-xl font-playfair font-bold text-gray-900 dark:text-white mt-1 transition-colors">MAN 1 JEMBER</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm font-light leading-relaxed transition-colors">“Saat ini, saya sedang menempuh pendidikan di MAN 1 Jember untuk periode 2024 hingga 2026. Di sekolah ini, saya fokus mengikuti seluruh kegiatan akademis dengan baik demi membangun fondasi ilmu dan karakter yang kuat untuk masa depan.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Experience & Skills -->
+                <div class="reveal">
+                    <div class="flex items-center space-x-4 mb-10">
+                        <div class="w-12 h-12 glass-pill flex items-center justify-center text-xl text-darkblue dark:text-white"><i class="fas fa-briefcase"></i></div>
+                        <h2 class="font-playfair text-3xl font-bold text-gray-900 dark:text-white transition-colors">Work Experience</h2>
+                    </div>
+                    
+                    <div class="space-y-6 mb-12">
+                        <div class="glass-card p-6 flex items-start space-x-5 group hover:border-darkblue/50 transition">
+                            <div class="w-10 h-10 rounded-full bg-darkblue/10 dark:bg-white/5 flex items-center justify-center text-darkblue dark:text-white shrink-0 group-hover:bg-darkblue/20 transition"><i class="fas fa-video"></i></div>
+                            <div>
+                                <span class="text-darkblue dark:text-blue-400 text-[10px] font-medium tracking-widest uppercase">2024 – Sekarang</span>
+                                <h3 class="text-lg font-playfair font-bold text-gray-900 dark:text-white mt-1 transition-colors">MAN 1 JEMBER</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm font-light transition-colors">“Menjadi kameramen yang diandalkan dalam membuat film, video, dan foto-foto.”</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 flex items-start space-x-5 group hover:border-darkblue/50 transition">
+                            <div class="w-10 h-10 rounded-full bg-darkblue/10 dark:bg-white/5 flex items-center justify-center text-darkblue dark:text-white shrink-0 group-hover:bg-darkblue/20 transition"><i class="fas fa-camera-retro"></i></div>
+                            <div>
+                                <span class="text-darkblue dark:text-blue-400 text-[10px] font-medium tracking-widest uppercase">2023 – 2024</span>
+                                <h3 class="text-lg font-playfair font-bold text-gray-900 dark:text-white mt-1 transition-colors">MAN 2 PROBOLINGGO</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm font-light transition-colors">“Pernah menjadi fotografer kelulusan sekolah tepatnya di MAN 2 Probolinggo.”</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="font-playfair text-xl font-bold mb-6 text-gray-900 dark:text-white transition-colors">Professional Skills</h2>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 glass-pill text-gray-800 dark:text-white text-[11px] tracking-wider uppercase">Photography</span>
+                        <span class="px-4 py-2 glass-pill text-gray-800 dark:text-white text-[11px] tracking-wider uppercase">Composition</span>
+                        <span class="px-4 py-2 glass-pill text-gray-800 dark:text-white text-[11px] tracking-wider uppercase">Lighting</span>
+                        <span class="px-4 py-2 glass-pill text-gray-800 dark:text-white text-[11px] tracking-wider uppercase">Storytelling</span>
+                        <span class="px-4 py-2 glass-pill text-gray-800 dark:text-white text-[11px] tracking-wider uppercase">Videography</span>
+                        <span class="px-4 py-2 glass-pill text-gray-800 dark:text-white text-[11px] tracking-wider uppercase">Digital Editing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Portofolio Gallery -->
+    <section id="portfolio" class="py-24 px-6 md:px-12 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Main Title Section -->
+            <div class="text-center mb-20 reveal">
+                <span class="inline-block px-4 py-1 glass-pill text-gray-800 dark:text-white text-[10px] font-bold tracking-[0.3em] uppercase mb-4">Portfolio Gallery</span>
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 drop-shadow-md transition-colors">MY CREATIVE WORKS</h2>
+                <p class="text-gray-600 dark:text-gray-400 italic font-light tracking-wide transition-colors">“Every picture tells a story.”</p>
+            </div>
+
+            <!-- PROJECTS CONTAINER -->
+            <div class="space-y-24 reveal">
+                
+                <!-- PROYEK 1 — KELULUSAN SEKOLAH -->
+                <div class="glass-card p-6 md:p-10 w-full max-w-4xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="glass-pill px-4 py-1 text-gray-800 dark:text-white text-[10px] font-bold tracking-[0.2em] mb-4 inline-block">PROJECT 01</span>
+                        <h3 class="font-playfair text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide transition-colors">KELULUSAN SEKOLAH</h3>
+                        <p class="text-gray-600 dark:text-gray-400 font-light text-sm max-w-lg mx-auto transition-colors">“Mengabadikan momen kebahagiaan, kebersamaan, dan kenangan indah.”</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div class="img-hover-wrapper aspect-video md:col-span-2 min-h-[250px] md:min-h-[350px]" onclick="openLightbox('Screenshot (438).png')">
+                            <img src="Screenshot (438).png" alt="Lulusan 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-video" onclick="openLightbox('Screenshot (437).png')">
+                            <img src="Screenshot (437).png" alt="Lulusan 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-video" onclick="openLightbox('Screenshot (436).png')">
+                            <img src="Screenshot (436).png" alt="Lulusan 3" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYEK 2 — ARGOPURO (6 FOTO) -->
+                <div class="glass-card p-6 md:p-10 w-full max-w-4xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="glass-pill px-4 py-1 text-gray-800 dark:text-white text-[10px] font-bold tracking-[0.2em] mb-4 inline-block">PROJECT 02</span>
+                        <h3 class="font-playfair text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide transition-colors">ARGOPURO</h3>
+                        <p class="text-gray-600 dark:text-gray-400 font-light text-sm max-w-lg mx-auto transition-colors">“Menampilkan keindahan alam dan perjalanan melalui perspektif fotografi yang artistik.”</p>
+                    </div>
+                    <!-- 6 Photos Grid, 3 Kolom di Desktop -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_5779.JPG')">
+                            <img src="IMG_5779.JPG" alt="Argopuro 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_5823.JPG')">
+                            <img src="IMG_5823.JPG" alt="Argopuro 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_5809.JPG')">
+                            <img src="IMG_5809.JPG" alt="Argopuro 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_5783.JPG')">
+                            <img src="IMG_5783.JPG" alt="Argopuro 4" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_5810.JPG')">
+                            <img src="IMG_5810.JPG" alt="Argopuro 5" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_5827.JPG')">
+                            <img src="IMG_5775.JPG" alt="Argopuro 6" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYEK 3 — PEMANDANGAN LANGIT (4 FOTO) -->
+                <div class="glass-card p-6 md:p-10 w-full max-w-4xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="glass-pill px-4 py-1 text-gray-800 dark:text-white text-[10px] font-bold tracking-[0.2em] mb-4 inline-block">PROJECT 03</span>
+                        <h3 class="font-playfair text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide transition-colors">PEMANDANGAN LANGIT</h3>
+                        <p class="text-gray-600 dark:text-gray-400 font-light text-sm max-w-lg mx-auto transition-colors">“Mengabadikan keindahan langit dalam berbagai suasana dan warna yang memukau.”</p>
+                    </div>
+                    <!-- 4 Photos, Grid 2x2 di Desktop -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('Screenshot 2026-09-22 14.41.33.png')">
+                            <img src="Screenshot 2026-09-22 14.41.33.png" alt="Langit 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('Screenshot 2026-09-22 06.34.14.png')">
+                            <img src="Screenshot 2026-09-22 06.34.14.png" alt="Langit 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_5674.JPG')">
+                            <img src="IMG_5674.JPG" alt="Langit 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-[3/4] md:aspect-[4/5]" onclick="openLightbox('IMG_0671.JPG')">
+                            <img src="IMG_0671.JPG" alt="Langit 4" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYEK 4 — RANDOM (5 FOTO LANDSCAPE) -->
+                <div class="glass-card p-6 md:p-10 w-full max-w-4xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="glass-pill px-4 py-1 text-gray-800 dark:text-white text-[10px] font-bold tracking-[0.2em] mb-4 inline-block">PROJECT 04</span>
+                        <h3 class="font-playfair text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide transition-colors">RANDOM</h3>
+                        <p class="text-gray-600 dark:text-gray-400 font-light text-sm max-w-lg mx-auto transition-colors">“Kumpulan karya fotografi eksperimental yang merepresentasikan kreativitas dan eksplorasi visual.”</p>
+                    </div>
+                    <!-- 5 Foto Landscape, foto kelima dibentangkan penuh -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div class="img-hover-wrapper aspect-video" onclick="openLightbox('Screenshot 2026-09-22 14.46.39.png')">
+                            <img src="Screenshot 2026-09-22 14.46.39.png" alt="Random 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-video" onclick="openLightbox('IMG_4600.jpg')">
+                            <img src="IMG_4600.jpg" alt="Random 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-video" onclick="openLightbox('Screenshot 2026-09-22 14.47.45.png')">
+                            <img src="Screenshot 2026-09-22 14.47.45.png" alt="Random 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-hover-wrapper aspect-video" onclick="openLightbox('IMG_4453.JPG')">
+                            <img src="IMG_4453.JPG" alt="Random 4" class="w-full h-full object-cover">
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Contact Section (Linktree Style Glassmorphism) -->
+    <section id="contact" class="py-24 px-6 md:px-12 relative z-10">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <h2 class="font-playfair text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 uppercase drop-shadow transition-colors">Find Me</h2>
+            <p class="text-gray-600 dark:text-gray-400 font-light tracking-wide mb-12 text-lg transition-colors">“Let's connect and create something beautiful.”</p>
+
+            <div class="flex flex-col space-y-5">
+                
+                <a href="https://instagram.com/zydd_da" target="_blank" class="flex items-center justify-between p-5 md:p-6 rounded-[2rem] bg-white/60 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 hover:-translate-y-2 hover:scale-[1.02] hover:bg-white/90 dark:hover:bg-white/10 hover:border-darkblue hover:shadow-[0_15px_35px_rgba(29,78,216,0.15)] dark:hover:shadow-[0_15px_35px_rgba(29,78,216,0.4)] transition-all duration-300 ease-out group cursor-pointer">
+                    <div class="flex items-center space-x-5">
+                        <i class="fab fa-instagram text-3xl md:text-4xl text-darkblue dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition"></i>
+                        <div class="text-left">
+                            <h3 class="text-gray-900 dark:text-white font-bold text-lg md:text-xl leading-tight transition-colors">Instagram</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 transition-colors">@zydd_da</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right -rotate-45 text-gray-400 dark:text-gray-500 group-hover:text-darkblue dark:group-hover:text-white group-hover:-translate-y-1 group-hover:translate-x-1 text-lg transition-all"></i>
+                </a>
+
+                <a href="mailto:ziyadrifdani@gmail.com" class="flex items-center justify-between p-5 md:p-6 rounded-[2rem] bg-white/60 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 hover:-translate-y-2 hover:scale-[1.02] hover:bg-white/90 dark:hover:bg-white/10 hover:border-darkblue hover:shadow-[0_15px_35px_rgba(29,78,216,0.15)] dark:hover:shadow-[0_15px_35px_rgba(29,78,216,0.4)] transition-all duration-300 ease-out group cursor-pointer">
+                    <div class="flex items-center space-x-5">
+                        <i class="far fa-envelope text-3xl md:text-4xl text-darkblue dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition"></i>
+                        <div class="text-left">
+                            <h3 class="text-gray-900 dark:text-white font-bold text-lg md:text-xl leading-tight transition-colors">Email</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 transition-colors">ziyadrifdani@gmail.com</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right -rotate-45 text-gray-400 dark:text-gray-500 group-hover:text-darkblue dark:group-hover:text-white group-hover:-translate-y-1 group-hover:translate-x-1 text-lg transition-all"></i>
+                </a>
+
+                <a href="https://wa.me/6282335773755" target="_blank" class="flex items-center justify-between p-5 md:p-6 rounded-[2rem] bg-white/60 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 hover:-translate-y-2 hover:scale-[1.02] hover:bg-white/90 dark:hover:bg-white/10 hover:border-darkblue hover:shadow-[0_15px_35px_rgba(29,78,216,0.15)] dark:hover:shadow-[0_15px_35px_rgba(29,78,216,0.4)] transition-all duration-300 ease-out group cursor-pointer">
+                    <div class="flex items-center space-x-5">
+                        <i class="fab fa-whatsapp text-3xl md:text-4xl text-darkblue dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition"></i>
+                        <div class="text-left">
+                            <h3 class="text-gray-900 dark:text-white font-bold text-lg md:text-xl leading-tight transition-colors">WhatsApp</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 transition-colors">+62 82335773755</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right -rotate-45 text-gray-400 dark:text-gray-500 group-hover:text-darkblue dark:group-hover:text-white group-hover:-translate-y-1 group-hover:translate-x-1 text-lg transition-all"></i>
+                </a>
+
+            </div>
+
+            <!-- Address -->
+            <div class="mt-16 text-center">
+                <p class="text-gray-500 text-xs font-light tracking-widest uppercase mb-2">Location</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm font-light leading-relaxed max-w-md mx-auto transition-colors">
+                    Dusun Toko Desa Sumurdalam, Kecamatan Besuk, Kabupaten Probolinggo, Provinsi Jawa Timur, 67283.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-card mt-10 rounded-none border-b-0 border-l-0 border-r-0 py-10 px-6 text-center z-10 relative">
+        <h2 class="font-playfair text-2xl text-gray-900 dark:text-white tracking-widest uppercase mb-2 transition-colors">Ziyad Rifdani</h2>
+        <p class="text-darkblue dark:text-blue-400 text-[10px] tracking-[0.2em] mb-6 uppercase transition-colors">Photography Portfolio</p>
+        <div class="flex justify-center space-x-6 text-xs text-gray-600 dark:text-gray-500 uppercase tracking-widest mb-6 transition-colors">
+            <a href="#home" class="hover:text-darkblue dark:hover:text-white transition">Home</a>
+            <a href="#about" class="hover:text-darkblue dark:hover:text-white transition">About</a>
+            <a href="#portfolio" class="hover:text-darkblue dark:hover:text-white transition">Portfolio</a>
+        </div>
+        <p class="text-gray-500 dark:text-gray-600 text-xs font-light transition-colors">© 2026 Ziyad Rifdani. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Theme Toggle Button -->
+    <button id="themeToggleBtn" class="fixed bottom-8 left-8 glass-pill w-14 h-14 flex items-center justify-center text-gray-800 dark:text-white text-2xl opacity-100 z-50 hover:scale-110 transition-all shadow-lg cursor-pointer">
+        <i id="themeIcon" class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 glass-pill w-14 h-14 flex items-center justify-center text-gray-800 dark:text-white text-xl opacity-0 pointer-events-none z-40 transition-all">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Fullscreen Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-white/90 dark:bg-black/90 backdrop-blur-xl z-[60] hidden justify-center items-center p-4 transition-colors">
+        <button onclick="closeLightbox()" class="absolute top-6 right-8 w-12 h-12 glass-pill flex items-center justify-center text-gray-900 dark:text-white text-2xl focus:outline-none"><i class="fas fa-times"></i></button>
+        <img id="lightbox-img" src="" alt="Portfolio Image" class="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl border border-gray-200 dark:border-white/10">
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        if (htmlElement.classList.contains('dark')) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        const navList = document.getElementById('nav-list');
+        const navItems = document.querySelectorAll('.nav-item');
+        const indicator = document.getElementById('nav-indicator');
+
+        function moveIndicator(el) {
+            if (!el) return;
+            const listRect = navList.getBoundingClientRect();
+            const elRect = el.getBoundingClientRect();
+            
+            indicator.style.width = `${elRect.width}px`;
+            indicator.style.left = `${elRect.left - listRect.left}px`;
+            indicator.style.opacity = '1';
+        }
+
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', (e) => {
+                moveIndicator(e.target);
+            });
+        });
+
+        navList.addEventListener('mouseleave', () => {
+            indicator.style.opacity = '0';
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const menuIcon = menuBtn.querySelector('i');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', reveal);
+        reveal(); 
+
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.tagName !== 'IMG') {
+                closeLightbox();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
+
+        const textArray = ["Photographer & Visual Storyteller"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById("typewriter-text");
+
+        function typeEffect() {
+            const currentText = textArray[textIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2500;
+                isDeleting = true;
+            } 
+            else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(typeEffect, 1000);
+        });
+    </script>
+</body>
+</html>
